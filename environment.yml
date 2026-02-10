@@ -8,6 +8,7 @@ channels:
 dependencies:
   - python=3.10
   - pip
+  - setuptools<70
   - cuda
   - conda-forge::cudnn
   - gcc=13.2
@@ -27,5 +28,5 @@ dependencies:
   - matplotlib  # for demo visualization
   - pip:
     - torch-scatter --find-links https://data.pyg.org/whl/torch-2.5.0+cu124.html
-    - git+https://github.com/Dao-AILab/flash-attention.git
+
     - spconv-cu124
