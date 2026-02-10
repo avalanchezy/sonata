@@ -32,6 +32,10 @@ This repo provide two ways of installation: **standalone mode** and **package mo
   # run `unset CUDA_PATH` if you have installed cuda in your local environment
   conda env create -f environment.yml --verbose
   conda activate sonata
+  
+  # Manual install for flash-attention to avoid build isolation issues
+  # make sure to have CUDA_HOME set (e.g. export CUDA_HOME=$CONDA_PREFIX)
+  pip install --no-build-isolation git+https://github.com/Dao-AILab/flash-attention.git
   ```
 
   *We install **FlashAttention** by default, yet not necessary. If FlashAttention is not available in your local environment, it's okay, check Model section in [Quick Start](#quick-start) for solution.*
@@ -43,12 +47,12 @@ This repo provide two ways of installation: **standalone mode** and **package mo
   # CUDA_VERSION: cuda version of local environment (e.g., 124), check by running 'nvcc --version'
   # TORCH_VERSION: torch version of local environment (e.g., 2.5.0), check by running 'python -c "import torch; print(torch.__version__)"'
   pip install spconv-cu${CUDA_VERSION}
-  pip install torch-scatter -f https://data.pyg.org/whl/torch-{TORCH_VERSION}+cu${CUDA_VERSION}.html
-  pip install git+https://github.com/Dao-AILab/flash-attention.git
+  pip install torch-scatter -f https://data.pyg.org/whl/torch-${TORCH_VERSION}+cu${CUDA_VERSION}.html
+  pip install --no-build-isolation git+https://github.com/Dao-AILab/flash-attention.git
   pip install huggingface_hub timm
 
   # (optional, or directly copy the sonata folder to your project)
-  python setup.py install
+  pip install .
   ```
   Additionally, for running our **demo code**, the following packages are also required:
   ```bash
